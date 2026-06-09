@@ -17,6 +17,7 @@ frozenlist==1.8.0
 future @ file:///AppleInternal/Library/BuildRoots/4~CDlvugAeMYaHcTWIELyAQ2joHAecmlI0GAlKPsw/Library/Caches/com.apple.xbs/Sources/python3/future-0.18.2-py3-none-any.whl
 greenlet==3.2.5
 gunicorn==23.0.0
+whitenoise==6.9.0
 idna==3.11
 importlib_metadata==8.7.1
 itsdangerous==2.2.0

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,17 +21,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-x+hphxm9gld0(r*6-wv!qz+9ek(ujd5b8^n)m#_0v!gh8nh@z-'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-x+hphxm9gld0(r*6-wv!qz+9ek(ujd5b8^n)m#_0v!gh8nh@z-')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 # settings.py
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '10.11.128.98', 
-]
+_default_hosts = 'localhost,127.0.0.1,10.11.128.98'
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', _default_hosts).split(',')
 
 # Application definition
 
@@ -46,6 +44,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -132,3 +131,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [BASE_DIR / 'pricess' / 'static']
 TEMPLATES[0]['DIRS'] = [BASE_DIR / 'pricess' / 'templates']
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
