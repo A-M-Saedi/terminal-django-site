@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-x+hphxm9gld0(r*6-wv!qz+9ek(ujd5b8^n)m#_0v!gh8nh@z-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # settings.py
 ALLOWED_HOSTS = [
@@ -131,3 +131,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = [BASE_DIR / 'pricess' / 'static']
 TEMPLATES[0]['DIRS'] = [BASE_DIR / 'pricess' / 'templates']
+STATIC_ROOT = BASE_DIR / "staticfiles"
