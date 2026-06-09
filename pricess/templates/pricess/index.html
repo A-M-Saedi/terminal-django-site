@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ارزبان</title>
+    <link rel="icon" type="image/png" href="{% static 'pricess/images/logo.jpeg' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'pricess/styles.css' %}">
+</head>
+<body>
+
+    <div id="fetchOverlay" class="fetch-overlay" style="display:none;">
+        <div class="fetch-box">
+            <img src="{% static 'pricess/images/logo.png' %}" alt="ارزبان" class="fetch-logo">
+            <div class="fetch-title">ارزبان</div>
+            <p class="fetch-subtitle">در حال دریافت قیمت‌های لحظه‌ای بازار...</p>
+            <div class="fetch-progress-wrap">
+                <div class="fetch-progress-fill" id="fetchProgressBar"></div>
+            </div>
+            <div class="fetch-current" id="fetchCurrentItem">در حال اتصال به سرور...</div>
+            <div class="fetch-counter" id="fetchCounter">۰ / ۲۱</div>
+        </div>
+    </div>
+
+    <div class="ticker-container">
+        <div class="ticker-wrapper">
+            <ul class="price-list" id="tickerList">
+                <li>در حال بارگذاری...</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="top-logo">
+        <div class="logo-container">
+            <div class="logo-right">
+                <img src="{% static 'pricess/images/logo.png' %}" alt="ارزبان" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-fa">ارزبان</span>
+                    <span class="logo-en">ARZBAN</span>
+                </div>
+            </div>
+            <div class="persian-date-box" id="persianDate"></div>
+            <div class="header-controls">
+                <div class="live-badge">
+                    <span class="live-dot"></span>
+                    <span>LIVE</span>
+                </div>
+                <button class="refresh-btn" id="refreshBtn" title="بروزرسانی">
+                    <i class="fas fa-sync-alt" id="refreshIcon"></i>
+                    <span id="refreshCountdown">5:00</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="banner-container" id="bannerContainer">
+        <div class="banner-wrapper">
+            <button class="banner-close" id="closeBannerBtn">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="https://www.digikala.com/landing/bookfair/?&promo_name=%D8%AF%D9%88%D8%A7%D8%B2%D8%AF%D9%87%D9%85%DB%8C%D9%86+%D9%86%D9%85%D8%A7%DB%8C%D8%B4%DA%AF%D8%A7%D9%87+%DA%A9%D8%AA%D8%A7%D8%A8+%D8%AF%DB%8C%D8%AC%DB%8C%DA%A9%D8%A7%D9%84%D8%A7+-+%D9%88%D8%A8&promo_position=home_slider_new_v2&promo_creative=208507&bCode=208507" class="banner-link" target="_blank">
+                <img src="{% static 'pricess/images/banner.webp' %}" alt="تبلیغات" class="banner-image">
+            </a>
+        </div>
+    </div>
+
+
+    <div class="content" id="mainContent">
+    </div>
+
+
+    <div class="waves">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#4A4E69" fill-opacity="1" d="M0,160L26.7,154.7C53.3,149,107,139,160,122.7C213.3,107,267,85,320,96C373.3,107,427,149,480,138.7C533.3,128,587,64,640,37.3C693.3,11,747,21,800,64C853.3,107,907,181,960,176C1013.3,171,1067,85,1120,90.7C1173.3,96,1227,192,1280,192C1333.3,192,1387,96,1413,48L1440,0L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z"></path>
+        </svg>
+
+        <div class="wrapper" dir="ltr">
+            <ul>
+                <li class="active" data-page="home">
+                    <a href="#"><i class="fas fa-home"></i><span>خانه</span></a>
+                </li>
+                <li data-page="currency">
+                    <a href="#"><i class="fas fa-exchange-alt"></i><span>نرخ ارز</span></a>
+                </li>
+                <li data-page="gold">
+                    <a href="#"><i class="fas fa-coins"></i><span>طلا و نقره</span></a>
+                </li>
+                <li data-page="crypto">
+                    <a href="#"><i class="fab fa-bitcoin"></i><span>کریپتو</span></a>
+                </li>
+                <li data-page="oil">
+                    <a href="#"><i class="fas fa-chart-pie"></i><span>نفت و انرژی</span></a>
+                </li>
+                <li data-page="converter">
+                    <a href="#"><i class="fas fa-calculator"></i><span>مبدل</span></a>
+                </li>
+                <div class="indicator"></div>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>درباره ما</h3>
+                <p>ما در ارزبان معتقدیم که دیدن قیمت‌ها نباید پیچیده و گیج‌کننده باشد...</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">&copy; ۱۴۰۵ تمامی حقوق محفوظ است.</div>
+            <button class="dev-btn" id="devBtn">
+                <i class="fas fa-code"></i>
+                <span>Developers</span>
+            </button>
+        </div>
+    </footer>
+
+    <!-- Developers Modal -->
+    <div class="dev-modal-overlay" id="devModal">
+        <div class="dev-modal">
+            <button class="dev-modal-close" id="devModalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="dev-modal-header">
+                <div class="dev-header-badge"><i class="fas fa-code"></i></div>
+                <h2>Team<span>.</span>Developers</h2>
+                <p class="dev-header-sub">the minds behind arzban</p>
+            </div>
+            <div class="dev-cards-wrapper">
+                <div class="dev-card dev-card--cyan">
+                    <div class="dev-card-glow"></div>
+                    <div class="dev-avatar"><span>AHR</span></div>
+                    <div class="dev-card-content">
+                        <div class="dev-role"><i class="fas fa-terminal"></i> Frontend Developer</div>
+                        <h3 class="dev-name">Amirhossein Rashmani</h3>
+                        <p class="dev-name-fa">امیرحسین رشمانی</p>
+                        <div class="dev-phone">
+                            <span class="dev-phone-label">$ call</span>
+                            <a href="tel:09303273626" class="dev-phone-number">09303273626</a>
+                        </div>
+                        <a href="tel:09303273626" class="dev-contact-btn">
+                            <i class="fas fa-phone"></i> تماس بگیرید
+                        </a>
+                    </div>
+                    <div class="dev-card-decorators">
+                        <span class="dev-decorator dev-decorator--tl">&lt;/&gt;</span>
+                        <span class="dev-decorator dev-decorator--br">{dev}</span>
+                    </div>
+                </div>
+                <div class="dev-card dev-card--purple">
+                    <div class="dev-card-glow"></div>
+                    <div class="dev-avatar"><span>AMS</span></div>
+                    <div class="dev-card-content">
+                        <div class="dev-role"><i class="fas fa-terminal"></i> Backend Developer</div>
+                        <h3 class="dev-name">Amirmohammad Saedi</h3>
+                        <p class="dev-name-fa">امیرمحمد ساعدی</p>
+                        <div class="dev-phone">
+                            <span class="dev-phone-label">$ call</span>
+                            <a href="tel:09383947025" class="dev-phone-number">09383947025</a>
+                        </div>
+                        <a href="tel:09383947025" class="dev-contact-btn">
+                            <i class="fas fa-phone"></i> تماس بگیرید
+                        </a>
+                    </div>
+                    <div class="dev-card-decorators">
+                        <span class="dev-decorator dev-decorator--tl">&lt;/&gt;</span>
+                        <span class="dev-decorator dev-decorator--br">{dev}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dev-modal-footer">
+                <span>Built with</span>
+                <i class="fas fa-heart"></i>
+                <span>in Iran</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scroll to top -->
+    <button class="scroll-top-btn" id="scrollToTopBtn" title="بازگشت به بالا">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Toast container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="{% static 'pricess/script.js' %}"></script>
+</body>
+</html>
